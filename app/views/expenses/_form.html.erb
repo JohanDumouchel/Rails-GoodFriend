@@ -32,7 +32,7 @@
   <div class="field">
   <%= form.label :users %>
     <%= form.select(
-      :users,
+      :user_ids,
       options_for_select(@users.map { |e| [e.name, e.id] }),
       {},
       { :multiple => true})

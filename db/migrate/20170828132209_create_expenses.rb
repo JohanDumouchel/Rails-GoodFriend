@@ -3,7 +3,8 @@ class CreateExpenses < ActiveRecord::Migration[5.1]
     create_table :expenses do |t|
 		t.string :title
 		t.monetize :amount
-		t.reference :user , index: true
+		t.references :user, foreign_key: true
+		
 
 
 		t.timestamps

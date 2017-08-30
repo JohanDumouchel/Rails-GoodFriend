@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-	has_and_belongs_to_many :expense
+	has_and_belongs_to_many :expenses
 end

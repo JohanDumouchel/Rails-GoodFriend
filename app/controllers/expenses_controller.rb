@@ -20,6 +20,7 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /expenses
@@ -70,6 +71,6 @@ class ExpensesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expense_params
-      params.require(:expense).permit(:title, :amount_cents, :user_id, :users)
+      params.require(:expense).permit(:title, :amount_cents, :user_id, user_ids: [])
     end
 end

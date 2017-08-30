@@ -1,8 +1,8 @@
 class CreateExpenseUserJoinTable < ActiveRecord::Migration[5.1]
   def change
-    create_join_table :expenses, :users do |t|
-      t.index [:expense_id, :user_id]
-      t.index [:user_id, :expense_id]
+    create_join_table :expenses_users, id: false do |t|
+      t.belongs_to :expense, index: true
+      t.belongs_to :user, index: true
     end
   end
 end

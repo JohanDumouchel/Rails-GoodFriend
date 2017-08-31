@@ -6,7 +6,7 @@ class FriendsController < ApplicationController
 
 	def show
 	    @friend = User.find(params[:id])
-	    @current_user = User.find(params[:current_user_id])
+	    @current_user = User.find(0)
 	    
 	    @expenses_user = Expense
 	                         .joins(:users)

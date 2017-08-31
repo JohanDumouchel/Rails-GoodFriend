@@ -4,10 +4,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    if !@current_user
-      redirect_to login_path
-      return
-    end
     @users = User.all
   end
 
@@ -64,31 +60,6 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-  # GET /users/login
-  def login
-
-  end
-
-  def check
-    @current_user = User.find_by(name: params[:name]).try(:authenticate, params[:password])
-    if @current_user
-      session[:user_id] = @current_user.id
-      flash[:info] = "Bienvenue #{@current_user.name} !"
-      redirect_to root_path
-      return
-    else
-      session[:user_id] = nil
-      flash[:info] = "Échec de la connexion"
-      redirect_to login_path
-      return
-    end
-  end
-
-  def logout
-    session[:user_id] = nil
-    flash[:info] = "Vous êtes maintenant déconnecté."
-    redirect_to root_path
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -97,6 +68,6 @@ class UsersController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password)
     end
 end

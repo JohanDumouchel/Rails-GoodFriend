@@ -1,5 +1,5 @@
 <header class="container">
-<nav class=" navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <%= link_to "GoodFriend", root_path, :class => 'navbar-brand' %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -15,6 +15,22 @@
       </li>
       <li class="nav-item">
         <%= link_to "Voir mes dépense", friends_path, :class => 'nav-link' %>
+      </li>      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      
+        <% if signed_in? %>
+        <li class="nav-item ">
+          <%= current_user.email %>
+        </li>
+        <li class="nav-item ">
+        <button class="button">
+          <%= link_to "Sign out", sign_out_path, method: :delete %>
+          </button>
+        </li>
+        <% else %>        
+          <%= link_to "Sign in", sign_in_path %>
+        <% end %>        
       </li>
     </ul>
   </div>

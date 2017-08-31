@@ -1,29 +1,24 @@
 class HomeController < ApplicationController
-include Clearance::Controller
-	before_action :require_login
 
-	def index
-		 
-		# ApplicationController.instance_method(:redirect_login_if_unknow).bind(self).call
-		
-		# @user = User.find(@current_user.id)
-		# @expenses = @user.expenses
+	def index	
+		@user = User.find(current_user.id)
+		@expenses = @user.expenses
 
-		# @user_spent = Money.new(0)
-		# @users_debtor = Money.new(0)
+		@user_spent = Money.new(0)
+		@users_debtor = Money.new(0)
 
-		# @expenses.each do |expense|
-		# 	@number_of_users = expense.users.count
-		# 	@user_expense = expense.amount_money / @number_of_users
+		@expenses.each do |expense|
+			@number_of_users = expense.users.count
+			@user_expense = expense.amount_money / @number_of_users
 
-		# 	if expense.user_id == @user.id
-		# 		@user_spent += @user_expense * (@number_of_users - 1)
-		# 	else
-		# 		@users_debtor += @user_expense
-		# 	end
-		# end
+			if expense.user_id == @user.id
+				@user_spent += @user_expense * (@number_of_users - 1)
+			else
+				@users_debtor += @user_expense
+			end
+		end
 
-		# @global_user = @user_spent - @users_debtor
+		@global_user = @user_spent - @users_debtor
 
 
 	end

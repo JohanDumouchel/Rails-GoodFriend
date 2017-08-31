@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'money-rails', '~>1'
 # Use bcrypt 
 # gem 'bcrypt', '~> 3.1.11'
-gem 'bcrypt', platforms: :ruby
+gem 'bcrypt', '~> 3.1.11', platforms: [:ruby, :x64_mingw, :mingw]
 # Use Clearance to get authentication
 gem "clearance" 
 # Use Capistrano for deployment

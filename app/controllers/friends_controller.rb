@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-
+include Clearance::Controller
 	def index
 	    @users = User.all
 	end

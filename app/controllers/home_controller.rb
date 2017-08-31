@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
+include Clearance::Controller
+	before_action :require_login
 
 	def index
+		 
 		# ApplicationController.instance_method(:redirect_login_if_unknow).bind(self).call
 		
 		# @user = User.find(@current_user.id)
@@ -22,6 +25,10 @@ class HomeController < ApplicationController
 
 		# @global_user = @user_spent - @users_debtor
 
+
+	end
+
+	def login
 
 	end
 end

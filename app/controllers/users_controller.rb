@@ -4,6 +4,10 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    if !@current_user
+      redirect_to login_path
+      return
+    end
     @users = User.all
   end
 
@@ -28,7 +32,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'Un utilisateur a été créé.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Un utilisateur a été modifié.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -56,9 +60,34 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Un utilisateur a été supprimé.' }
       format.json { head :no_content }
     end
+  end
+  # GET /users/login
+  def login
+
+  end
+
+  def check
+    @current_user = User.find_by(name: params[:name]).try(:authenticate, params[:password])
+    if @current_user
+      session[:user_id] = @current_user.id
+      flash[:info] = "Bienvenue #{@current_user.name} !"
+      redirect_to root_path
+      return
+    else
+      session[:user_id] = nil
+      flash[:info] = "Échec de la connexion"
+      redirect_to login_path
+      return
+    end
+  end
+
+  def logout
+    session[:user_id] = nil
+    flash[:info] = "Vous êtes maintenant déconnecté."
+    redirect_to root_path
   end
 
   private
@@ -66,9 +95,8 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end

@@ -27,10 +27,11 @@ class ExpensesController < ApplicationController
   # POST /expenses.json
   def create
     @expense = Expense.new(expense_params)
+    @users = User.all
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
+        format.html { redirect_to @expense, notice: 'Une dépense a été créée.' }
         format.json { render :show, status: :created, location: @expense }
       else
         format.html { render :new }
@@ -44,7 +45,7 @@ class ExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @expense.update(expense_params)
-        format.html { redirect_to @expense, notice: 'Expense was successfully updated.' }
+        format.html { redirect_to @expense, notice: 'Une dépense a été modifiée.' }
         format.json { render :show, status: :ok, location: @expense }
       else
         format.html { render :edit }
@@ -58,7 +59,7 @@ class ExpensesController < ApplicationController
   def destroy
     @expense.destroy
     respond_to do |format|
-      format.html { redirect_to expenses_url, notice: 'Expense was successfully destroyed.' }
+      format.html { redirect_to expenses_url, notice: 'Une dépense a été détruite.' }
       format.json { head :no_content }
     end
   end
@@ -71,6 +72,6 @@ class ExpensesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expense_params
-      params.require(:expense).permit(:title, :amount, :user_id, user_ids: [])
+      params.require(:expense).permit(:title, :amount_money, :user_id, user_ids: [])
     end
 end

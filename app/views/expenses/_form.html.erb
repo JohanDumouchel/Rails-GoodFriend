@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label "titre" %>
     <%= form.text_field :title, id: :expense_title %>
   </div>
 
   <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount, id: :expense_amount %>
+    <%= form.label "Montant" %>
+    <%= form.text_field :amount_money, id: :expense_amount %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
+    <%= form.label "Payeur" %>
     <%= form.select(
       :user_id,
       options_for_select(@users.map { |e| [e.name, e.id] }))
@@ -30,7 +30,7 @@
   </div>
 
   <div class="field">
-  <%= form.label :users %>
+  <%= form.label "Bénéficiaires"  %>
     <%= form.select(
       :user_ids,
       options_for_select(@users.map { |e| [e.name, e.id] }),
@@ -40,6 +40,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Enregistrer" %>
   </div>
 <% end %>

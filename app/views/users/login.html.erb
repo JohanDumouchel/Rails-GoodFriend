@@ -1,0 +1,20 @@
+<h1>Connexion</h1>
+<br />
+<%= form_tag login_path , method: :post do %>
+
+  <div class="form-groups">
+    <%= label_tag "Nom" %>
+    <%= text_field_tag :name %>
+  </div>
+
+  <div class="form-groups">
+    <%= label_tag "Mot de passe" %>
+    <%= password_field_tag :password%>
+  </div>
+
+  <br /><br />
+  <input type="submit" class="btn btn-secondary" value="Se connecter" /> ou <a href="/users/new" class="btn btn-primary">S'inscrire</a>
+
+<% end %>
+
+<% console %>

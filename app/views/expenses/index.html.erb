@@ -1,13 +1,14 @@
-<p id="notice"><%= notice %></p>
+<p id="notice bg-danger"><%= notice %></p>
 
-<h1>Expenses</h1>
+<h1>Dépenses</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Amount</th>
-      <th>User</th>
+      <th>#</th>
+      <th>Titre</th>
+      <th>Montant</th>
+      <th>Payeur</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +16,11 @@
   <tbody>
     <% @expenses.each do |expense| %>
       <tr>
+        <td scope="row"><%= expense.id %></td>
         <td><%= expense.title %></td>
-        <td><%= expense.amount %></td>
-        <td><%= expense.user %></td>
+        <td><%= expense.amount_money %></td>
+        <td><%= expense.user.name %></td>
+
         <td><%= link_to 'Show', expense %></td>
         <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
         <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -28,4 +31,6 @@
 
 <br>
 
-<%= link_to 'New Expense', new_expense_path %>
+<button class="btn btn_secondary">
+  <%= link_to "Ajouter une dépense", new_expense_path %>
+</button>

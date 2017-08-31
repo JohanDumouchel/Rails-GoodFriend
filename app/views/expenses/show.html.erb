@@ -1,18 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Titre:</strong>
   <%= @expense.title %>
 </p>
 
 <p>
-  <strong>Amount :</strong>
-  <%= @expense.amount %>
+  <strong>Montant:</strong>
+  <%= @expense.amount_money %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @expense.user %>
+  <strong>Créer par:</strong>
+  <%= @expense.user.name %>
+</p>
+
+<p>
+	<strong>Bénéficiaires:</strong>
+
+	<% @expense.users.each  do |user|  %>
+ 		<li><%= user.name %></li>
+    <% end %>
 </p>
 
 <%= link_to 'Edit', edit_expense_path(@expense) %> |

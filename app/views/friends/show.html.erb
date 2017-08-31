@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<h1>Balance</h1>
+<div class="container-fluid">
+	<% if @global_user < 0 %>
+		<p>je dois <%= @global_user.abs %> <%= @global_user.currency %> à <%= @friend.name %></p>
+	<% else %>
+		<p><%= @friend.name %> me doit <%= @global_user.abs %> <%= @global_user.currency %></p>
+	<% end %>
+</div>

@@ -19,8 +19,6 @@ class HomeController < ApplicationController
 		end
 
 		@global_user = @user_spent - @users_debtor
-
-
 	end
 
 	def login

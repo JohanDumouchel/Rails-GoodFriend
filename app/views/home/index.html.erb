@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
-<h1>Bonjour les amis</h1>
-<br>
+<h1>Les Bons Amis</h1>
+<h2>Bonjour, <%= current_user.name %></h2>
+<h2>Balance Globale : <%= @global_user %> <%= @global_user.currency %></h2>
+<p>Tes amis te doivent <%= @user_spent %> <%= @user_spent.currency %></p>
+<p>Tu dois <%= @users_debtor %> <%= @users_debtor.currency %> à tes amis</p>
 <button class="btn btn_secondary">
 <%= link_to "Ajouter une dépense", new_expense_path%>
 </button>

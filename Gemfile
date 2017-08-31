@@ -32,9 +32,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use Money
 gem 'money-rails', '~>1'
-# USe bcrypt 
+# Use bcrypt 
 # gem 'bcrypt', '~> 3.1.11'
-
+gem 'bcrypt', platforms: :ruby
+# Use Clearance to get authentication
+gem "clearance" 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

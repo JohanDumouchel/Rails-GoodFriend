@@ -1,3 +1,4 @@
 class User < ApplicationRecord
-	has_and_belongs_to_many :expenses
+  include Clearance::User
+  has_and_belongs_to_many :expenses
 end

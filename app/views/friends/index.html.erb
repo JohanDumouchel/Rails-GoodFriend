@@ -2,5 +2,7 @@
 
 <h1>Voir les dépenses</h1>
 <% @users.each do |user| %>
-   <p><%= link_to user.name, friends_show_path(user) %></td></p>
+	<% if current_user.id != user.id %>
+			<p><%= link_to user.name, friends_show_path(user) %></td></p>
+   	<% end %>
 <% end %>

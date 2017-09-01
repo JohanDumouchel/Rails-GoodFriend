@@ -6,17 +6,16 @@ class FriendsController < ApplicationController
 
 	def show
 	    @friend = User.find(params[:id])
-	    @current_user = User.find(0)
 	    
 	    @expenses_user = Expense
 	                         .joins(:users)
-	                         .where('expenses.user_id = (?)', @current_user.id)
+	                         .where('expenses.user_id = (?)', current_user.id)
 	                         .where('users.id = (?)', params[:id])
 
 	    @expenses_friend = Expense
 	                           .joins(:users)
 	                           .where('expenses.user_id = (?)', params[:id])
-	                           .where('users.id = (?)', @current_user.id)
+	                           .where('users.id = (?)', current_user.id)
 
 	    @expenses = @expenses_user + @expenses_friend
 
@@ -28,7 +27,7 @@ class FriendsController < ApplicationController
 			@number_of_users = expense.users.count
 			@user_expense = expense.amount_money / @number_of_users
 
-			if expense.user_id == @current_user.id
+			if expense.user_id == current_user.id
 			@user_spent += @user_expense
 			else
 			@user_debtor += @user_expense
